@@ -6,7 +6,7 @@
 \alias{XMInt-package}
 \title{XMInt: Model Selection for Multivariate Mediation with Interaction}
 \description{
-This package does model selection for multivariate mediation with interaction.
+This package contains functions for model selection for multivariate mediation with interaction.
 }
 \seealso{
 Useful links:
