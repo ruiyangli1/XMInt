@@ -13,5 +13,6 @@ Users can either download QUIC from  https://cran.r-project.org/src/contrib/Arch
 After downloading, install it using the following lines. 
 
 library(devtools)
+
 install_local("~/Downloads/QUIC_1.1.1.tar.gz")
 
