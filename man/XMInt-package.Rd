@@ -12,12 +12,11 @@ This package contains functions for model selection for multivariate mediation w
 Useful links:
 \itemize{
   \item \url{https://github.com/ruiyangli1/XMInt}
-  \item Report bugs at \url{https://github.com/ruiyangli1/XMInt/issues}
 }
 
 }
 \author{
-\strong{Maintainer}: Ruiyang Li \email{rl3034@cumc.columbia.edu} (\href{https://orcid.org/YOUR-ORCID-ID}{ORCID})
+\strong{Maintainer}: Ruiyang Li \email{rl3034@cumc.columbia.edu}
 
 }
 \keyword{internal}
