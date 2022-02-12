@@ -2,7 +2,7 @@
 % Please edit documentation in R/QUIC.R
 \name{QUIC}
 \alias{QUIC}
-\title{Title QUIC from archive}
+\title{QUIC function replicated from https://cran.r-project.org/src/contrib/Archive/QUIC/QUIC_1.1.1.tar.gz)}
 \usage{
 QUIC(
   S,
@@ -16,28 +16,40 @@ QUIC(
 )
 }
 \arguments{
-\item{S}{S}
+\item{S}{Covariance matrix. A p by p symmetric matrix.}
 
-\item{rho}{rho}
+\item{rho}{Regularization parameter. It can be a p by p matrix, a vector or scalar.}
 
-\item{path}{path}
+\item{path}{If specified, then rho is scaled with the elements of path and the corresponding inverse covariance matrix estimation is carried out for each value.}
 
-\item{tol}{tol}
+\item{tol}{Specifes the convergence tolerance.}
 
-\item{msg}{msg}
+\item{msg}{Controls how verbose messages should be printed during execution. Valid value range: 0–4.}
 
-\item{maxIter}{maxIter}
+\item{maxIter}{Specifies the maximum number of Newton iterations.}
 
-\item{X.init}{X.init}
+\item{X.init}{The initial estimate for the regularized inverse covariance matrix.}
 
-\item{W.init}{W.init}
+\item{W.init}{The inverse of initial estimate for the regularized inverse covariance matrix.}
 }
 \value{
 
 }
 \description{
-Title QUIC from archive
+QUadratic Inverse Covariance estimation
+
+Estimates a sparse inverse covariance matrix using a combination of Newton's method and coordinate descent.
+
+For details, please refer to https://cran.r-project.org/src/contrib/Archive/QUIC/QUIC_1.1.1.tar.gz)
 }
 \examples{
 QUIC(Sigma2, rho = sigma2penalty*lam2[j], msg = 0)
+}
+\references{
+Sparse Inverse Covariance Matrix Estimation Using Quadratic Approximation. Cho-Jui Hsieh, Matyas A. Sustik, Inderjit S. Dhillon, Pradeep Ravikumar, Advances in Neural Information Processing Systems, vol. 24, 2011, p. 2330–2338.
+
+http://www.cs.utexas.edu/users/sustik/papers/invcov.pdf
+}
+\author{
+Matyas A. Sustik (package maintainer), Cho-Jui Hsieh, Inderjit S. Dhillon, Pradeep Ravikumar
 }

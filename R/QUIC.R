@@ -1,18 +1,26 @@
 ## QUIC function (from https://cran.r-project.org/src/contrib/Archive/QUIC/QUIC_1.1.1.tar.gz)
 
-#' Title QUIC from archive
+#' @title QUIC function replicated from https://cran.r-project.org/src/contrib/Archive/QUIC/QUIC_1.1.1.tar.gz)
 #'
-#' @param S S
-#' @param rho rho
-#' @param path path
-#' @param tol tol
-#' @param msg msg
-#' @param maxIter maxIter
-#' @param X.init X.init
-#' @param W.init W.init
+#' @description QUadratic Inverse Covariance estimation
+#' @description Estimates a sparse inverse covariance matrix using a combination of Newton's method and coordinate descent.
+#' @description For details, please refer to https://cran.r-project.org/src/contrib/Archive/QUIC/QUIC_1.1.1.tar.gz)
+#'
+#' @param S Covariance matrix. A p by p symmetric matrix.
+#' @param rho Regularization parameter. It can be a p by p matrix, a vector or scalar.
+#' @param path If specified, then rho is scaled with the elements of path and the corresponding inverse covariance matrix estimation is carried out for each value.
+#' @param tol Specifes the convergence tolerance.
+#' @param msg Controls how verbose messages should be printed during execution. Valid value range: 0–4.
+#' @param maxIter Specifies the maximum number of Newton iterations.
+#' @param X.init The initial estimate for the regularized inverse covariance matrix.
+#' @param W.init The inverse of initial estimate for the regularized inverse covariance matrix.
 #'
 #' @return
 #' @export
+#'
+#' @author Matyas A. Sustik (package maintainer), Cho-Jui Hsieh, Inderjit S. Dhillon, Pradeep Ravikumar
+#' @references Sparse Inverse Covariance Matrix Estimation Using Quadratic Approximation. Cho-Jui Hsieh, Matyas A. Sustik, Inderjit S. Dhillon, Pradeep Ravikumar, Advances in Neural Information Processing Systems, vol. 24, 2011, p. 2330–2338.
+#' @references http://www.cs.utexas.edu/users/sustik/papers/invcov.pdf
 #'
 #' @examples
 #' QUIC(Sigma2, rho = sigma2penalty*lam2[j], msg = 0)
