@@ -13,11 +13,15 @@ This package aims to identify the mediators and the exposure by mediator interac
 ## Example
 
 devtools::install_github("ruiyangli1/XMInt")
+
 library(XMInt)
 
 data = dat_gen(N = 200, V = 100, es = 1)
+
 X = data$X; Y = data$Y; M = data$M
 
 result = XMInt_select(X,Y,M)
-result$selected_mediator
-result$selected_interaction 
+
+selected mediator(s): result$selected_mediator
+
+selected interaction(s): result$selected_interaction 
