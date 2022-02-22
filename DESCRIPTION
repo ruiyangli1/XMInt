@@ -6,7 +6,8 @@ Authors@R:
 Description: This package contains functions for model selection for multivariate mediation with interaction.
 Depends:
     glmnet,
-    ggplot2
+    ggplot2,
+    rsvd
 LinkingTo: 
     Rcpp
 License: `use_mit_license()`, `use_gpl3_license()` or friends to pick a
