@@ -19,7 +19,8 @@ Users may need to install gfortran before installing our package. Detailed insta
 
 ```
 ## install package
-devtools::install_github("ruiyangli1/XMInt")
+library(devtools)
+install_github("ruiyangli1/XMInt")
 
 ## load package
 library(XMInt)
