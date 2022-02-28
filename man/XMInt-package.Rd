@@ -12,6 +12,7 @@ This package contains functions for model selection for multivariate mediation w
 Useful links:
 \itemize{
   \item \url{https://github.com/ruiyangli1/XMInt}
+  \item \url{https://ruiyangli1.github.io/XMInt}
 }
 
 }
