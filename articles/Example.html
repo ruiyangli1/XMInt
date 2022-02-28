@@ -104,6 +104,18 @@
 <div class="section level3">
 <h3 id="data-generation">Data generation<a class="anchor" aria-label="anchor" href="#data-generation"></a>
 </h3>
+<p>Example data (exposure X, outcome Y, and potential mediators M) was generated as follows.</p>
+<p>For each subject <span class="math inline">\(i = 1, ..., N\)</span>:</p>
+<ul>
+<li><span class="math inline">\(X_i \stackrel{i.i.d}{\sim} N(0, 1)\)</span></li>
+<li>
+<span class="math inline">\(M_{i,v} = a_v X_i + e{1_{i,v}}\)</span>, where <span class="math inline">\(e_{1_{i,v}} \stackrel{i.i.d}{\sim} N(0, 1), v = 1, ..., V\)</span>
+</li>
+<li>
+<span class="math inline">\(Y_i = X_i + \sum_v b_{1_{i,v}} M_{i,v} + \sum_v b_{2_{i,v}} X_i \times M_{i,v} + e_{2_{i,v}}\)</span>, where <span class="math inline">\(e_{2_{i,v}} \stackrel{i.i.d}{\sim} N(0, 1)\)</span>
+</li>
+</ul>
+<p>The first three M variables (<span class="math inline">\(M_1,M_2,M_3\)</span>) are set to be the true mediators (i.e., having non-zero <span class="math inline">\(a\)</span> and <span class="math inline">\(b_1\)</span> coefficients), <span class="math inline">\(X \times M_1\)</span> is set to be the true exposure-by-mediator interaction term (i.e., having non-zero <span class="math inline">\(b_2\)</span> coefficients), and all other coefficients are set to be 0.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## data generation</span>
 <span class="va">data</span> <span class="op">=</span> <span class="fu"><a href="../reference/dat_gen.html">dat_gen</a></span><span class="op">(</span>N <span class="op">=</span> <span class="fl">200</span>, V <span class="op">=</span> <span class="fl">100</span>, es <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>
