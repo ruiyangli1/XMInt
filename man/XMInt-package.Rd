@@ -4,7 +4,7 @@
 \name{XMInt-package}
 \alias{XMInt}
 \alias{XMInt-package}
-\title{XMInt: Model Selection for Multivariate Mediation with Interaction}
+\title{XMInt: Package Usage}
 \description{
 This package contains functions for model selection for multivariate mediation with interaction.
 }
@@ -14,10 +14,6 @@ Useful links:
   \item \url{https://github.com/ruiyangli1/XMInt}
   \item \url{https://ruiyangli1.github.io/XMInt}
 }
-
-}
-\author{
-\strong{Maintainer}: Ruiyang Li \email{rl3034@cumc.columbia.edu}
 
 }
 \keyword{internal}
