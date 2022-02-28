@@ -14,7 +14,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-This package conducts the model selection for multivariate mediation analysis involving exposure by mediator interaction.
+This package conducts model selection for multivariate mediation analysis involving exposure by mediator interaction while addressing the underlying hierarchical structure between the main effect and interaction.
 
 ## Installation
 
@@ -50,7 +50,7 @@ X = data$X; Y = data$Y; M = data$M
 ```
 
 ### Model selection
-```{r}
+```{r results = "hide"}
 ## select model
 result = XMInt_select(X,Y,M)
 ```
