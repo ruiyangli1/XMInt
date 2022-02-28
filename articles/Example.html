@@ -85,7 +85,7 @@
 
     
     
-<p>This package conducts the model selection for multivariate mediation analysis involving exposure by mediator interaction.</p>
+<p>This package conducts model selection for multivariate mediation analysis involving exposure by mediator interaction while addressing the underlying hierarchical structure between the main effect and interaction.</p>
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h2>
@@ -126,28 +126,7 @@
 </h3>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## select model</span>
-<span class="va">result</span> <span class="op">=</span> <span class="fu"><a href="../reference/XMInt_select.html">XMInt_select</a></span><span class="op">(</span><span class="va">X</span>,<span class="va">Y</span>,<span class="va">M</span><span class="op">)</span>
-<span class="co">#&gt; Maximum lambda has been identified. </span>
-<span class="co">#&gt; Lambda 1 was finished.</span>
-<span class="co">#&gt; Lambda 2 was finished.</span>
-<span class="co">#&gt; Lambda 3 was finished.</span>
-<span class="co">#&gt; Lambda 4 was finished.</span>
-<span class="co">#&gt; Lambda 5 was finished.</span>
-<span class="co">#&gt; Lambda 6 was finished.</span>
-<span class="co">#&gt; Lambda 7 was finished.</span>
-<span class="co">#&gt; Lambda 8 was finished.</span>
-<span class="co">#&gt; Lambda 9 was finished.</span>
-<span class="co">#&gt; Lambda 10 was finished.</span>
-<span class="co">#&gt; Lambda 11 was finished.</span>
-<span class="co">#&gt; Lambda 12 was finished.</span>
-<span class="co">#&gt; Lambda 13 was finished.</span>
-<span class="co">#&gt; Lambda 14 was finished.</span>
-<span class="co">#&gt; Lambda 15 was finished.</span>
-<span class="co">#&gt; Lambda 16 was finished.</span>
-<span class="co">#&gt; Lambda 17 was finished.</span>
-<span class="co">#&gt; Lambda 18 was finished.</span>
-<span class="co">#&gt; Lambda 19 was finished.</span>
-<span class="co">#&gt; Lambda 20 was finished.</span></code></pre></div>
+<span class="va">result</span> <span class="op">=</span> <span class="fu"><a href="../reference/XMInt_select.html">XMInt_select</a></span><span class="op">(</span><span class="va">X</span>,<span class="va">Y</span>,<span class="va">M</span><span class="op">)</span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="results">Results<a class="anchor" aria-label="anchor" href="#results"></a>
