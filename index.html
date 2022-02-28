@@ -82,34 +82,23 @@
 <h2 id="about">About<a class="anchor" aria-label="anchor" href="#about"></a>
 </h2>
 <p>A mediation model examines how an independent variable or an exposure (X) affects a dependent variable (Y) through one or more intervening variables or mediators (M).</p>
-<p>This package aims to identify the mediators and the exposure by mediator interactions in the multivariate mediators setting while addressing the underlying hierarchical structure between the main effect and interaction.</p>
+<p>This package conducts the mediation analysis to identify the mediators and the exposure by mediator interactions in the multivariate mediators setting while addressing the underlying hierarchical structure between the main effect and interaction.</p>
 </div>
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h2>
 <p>Users may need to install gfortran before installing our package. Detailed installation instructions can be found at <a href="https://gcc.gnu.org/wiki/GFortranBinaries" class="external-link uri">https://gcc.gnu.org/wiki/GFortranBinaries</a>.</p>
-</div>
-<div class="section level2">
-<h2 id="example">Example<a class="anchor" aria-label="anchor" href="#example"></a>
-</h2>
-<pre><code><span class="co">## install package</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://devtools.r-lib.org/" class="external-link">devtools</a></span><span class="op">)</span>
-<span class="fu">install_github</span><span class="op">(</span><span class="st">"ruiyangli1/XMInt"</span><span class="op">)</span>
+<pre class="{r}"><code><span class="co">## install package</span>
+<span class="co"># install.packages("devtools")</span>
+<span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"ruiyangli1/XMInt"</span><span class="op">)</span>
 
 <span class="co">## load package</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/ruiyangli1/XMInt" class="external-link">XMInt</a></span><span class="op">)</span>
-
-<span class="co">## data generation</span>
-<span class="va">data</span> <span class="op">=</span> <span class="fu"><a href="reference/dat_gen.html">dat_gen</a></span><span class="op">(</span>N <span class="op">=</span> <span class="fl">200</span>, V <span class="op">=</span> <span class="fl">100</span>, es <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>
-<span class="va">X</span> <span class="op">=</span> <span class="va">data</span><span class="op">$</span><span class="va">X</span>; <span class="va">Y</span> <span class="op">=</span> <span class="va">data</span><span class="op">$</span><span class="va">Y</span>; <span class="va">M</span> <span class="op">=</span> <span class="va">data</span><span class="op">$</span><span class="va">M</span>
-
-<span class="co">## select model</span>
-<span class="va">result</span> <span class="op">=</span> <span class="fu"><a href="reference/XMInt_select.html">XMInt_select</a></span><span class="op">(</span><span class="va">X</span>,<span class="va">Y</span>,<span class="va">M</span><span class="op">)</span>
-
-<span class="co">## results: selected mediator(s)</span>
-<span class="va">result</span><span class="op">$</span><span class="va">selected_mediator</span>
-<span class="co">## results: selected interaction(s)</span>
-<span class="va">result</span><span class="op">$</span><span class="va">selected_interaction</span></code></pre>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/ruiyangli1/XMInt" class="external-link">XMInt</a></span><span class="op">)</span></code></pre>
+</div>
+<div class="section level2">
+<h2 id="usage">Usage<a class="anchor" aria-label="anchor" href="#usage"></a>
+</h2>
+<pre class="{r}"><code><span class="fu"><a href="reference/XMInt_select.html">XMInt_select</a></span><span class="op">(</span><span class="va">X</span>,<span class="va">Y</span>,<span class="va">M</span><span class="op">)</span></code></pre>
 </div>
 </div>
   </div>
