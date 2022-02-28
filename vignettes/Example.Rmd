@@ -1,0 +1,54 @@
+---
+title: "Example for XMInt"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Example for XMInt}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+This package conducts the model selection for multivariate mediation analysis involving exposure by mediator interaction.
+
+## Installation
+
+Users may need to install gfortran before installing our package. Detailed installation instructions can be found at https://gcc.gnu.org/wiki/GFortranBinaries.
+
+```{r setup, message=FALSE,warning=FALSE}
+## install package
+#library(devtools)
+#install_github("ruiyangli1/XMInt")
+
+## load package
+library(XMInt)
+```
+
+## Example 
+
+### Data generation
+```{r}
+## data generation
+data = dat_gen(N = 200, V = 100, es = 1)
+X = data$X; Y = data$Y; M = data$M
+```
+
+### Model selection
+```{r}
+## select model
+result = XMInt_select(X,Y,M)
+```
+
+### Results
+```{r}
+## selected mediator(s)
+result$selected_mediator
+## selected interaction(s)
+result$selected_interaction 
+```
+
