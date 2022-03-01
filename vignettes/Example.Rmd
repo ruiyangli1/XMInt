@@ -16,22 +16,13 @@ knitr::opts_chunk$set(
 
 This package conducts model selection for multivariate mediation analysis involving exposure by mediator interaction while addressing the underlying hierarchical structure between the main effect and interaction.
 
-## Installation
-
-Users may need to install gfortran before installing our package. Detailed installation instructions can be found at https://gcc.gnu.org/wiki/GFortranBinaries.
+## Load package
 
 ```{r setup, message=FALSE,warning=FALSE}
-## install package
-#library(devtools)
-#install_github("ruiyangli1/XMInt")
-
-## load package
 library(XMInt)
 ```
 
-## Example 
-
-### Data generation
+## Data generation
 
 Example data (exposure X, outcome Y, and potential mediators M) was generated as follows. 
 
@@ -41,7 +32,7 @@ For each subject $i = 1, ..., N$:
 * $M_{i,v} = a_v X_i + e{1_{i,v}}$, where $e_{1_{i,v}} \stackrel{i.i.d}{\sim} N(0, 1), v = 1, ..., V$
 * $Y_i = X_i + \sum_v b_{1_{i,v}} M_{i,v} + \sum_v b_{2_{i,v}} X_i \times M_{i,v} + e_{2_{i,v}}$, where $e_{2_{i,v}} \stackrel{i.i.d}{\sim} N(0, 1)$
 
-The first three M variables ($M_1,M_2,M_3$) are set to be the true mediators (i.e., having non-zero $a$ and $b_1$ coefficients), $X \times M_1$ is set to be the true exposure-by-mediator interaction term (i.e., having non-zero $b_2$ coefficients), and all other coefficients are set to be 0.
+The first three M variables ($M_1,M_2,M_3$) are set to be the true mediators (i.e., having non-zero $a$ and $b_1$ coefficients), $X \times M_1$ is set to be the true exposure-by-mediator interaction term (i.e., having non-zero $b_2$ coefficients), and all other coefficients are set to be 0. The effect size (ES) represents the value of $a, b_1, b_2$ of the truth, which are $a_1, a_2, a_3, b_{1_{1}}, b_{1_{2}}, b_{1_{3}}, b_{2_{1}}$ in our case.
 
 ```{r}
 ## data generation
@@ -49,17 +40,19 @@ data = dat_gen(N = 200, V = 100, es = 1)
 X = data$X; Y = data$Y; M = data$M
 ```
 
-### Model selection
+## Model selection
 ```{r results = "hide"}
 ## select model
 result = XMInt_select(X,Y,M)
 ```
 
-### Results
+## Results
 ```{r}
 ## selected mediator(s)
 result$selected_mediator
+
 ## selected interaction(s)
 result$selected_interaction 
 ```
+
 
