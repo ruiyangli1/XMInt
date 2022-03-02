@@ -29,3 +29,4 @@ library(XMInt)
 ```{r}
 XMInt_select(X,Y,M)
 ```
+For more example, please see [here](https://ruiyangli1.github.io/XMInt/articles/Example.html).
