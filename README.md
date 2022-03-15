@@ -1,6 +1,6 @@
 # XMInt
 
-Model Selection for Multivariate Mediation with Interaction
+Model Selection for Exposure-mediator Interaction
 
 
 ## About 
