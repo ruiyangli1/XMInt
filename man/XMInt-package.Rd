@@ -6,7 +6,7 @@
 \alias{XMInt-package}
 \title{XMInt: Package Usage}
 \description{
-This package contains functions for model selection for multivariate mediation with interaction.
+This package contains functions for model selection for exposure-mediator interaction.
 }
 \seealso{
 Useful links:
