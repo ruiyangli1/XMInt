@@ -42,9 +42,6 @@ Estimates a sparse inverse covariance matrix using a combination of Newton's met
 
 For details, please refer to https://cran.r-project.org/src/contrib/Archive/QUIC/QUIC_1.1.1.tar.gz)
 }
-\examples{
-QUIC(Sigma2, rho = sigma2penalty*lam2[j], msg = 0)
-}
 \references{
 Sparse Inverse Covariance Matrix Estimation Using Quadratic Approximation. Cho-Jui Hsieh, Matyas A. Sustik, Inderjit S. Dhillon, Pradeep Ravikumar, Advances in Neural Information Processing Systems, vol. 24, 2011, p. 2330–2338.
 

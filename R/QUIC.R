@@ -22,8 +22,6 @@
 #' @references Sparse Inverse Covariance Matrix Estimation Using Quadratic Approximation. Cho-Jui Hsieh, Matyas A. Sustik, Inderjit S. Dhillon, Pradeep Ravikumar, Advances in Neural Information Processing Systems, vol. 24, 2011, p. 2330–2338.
 #' @references http://www.cs.utexas.edu/users/sustik/papers/invcov.pdf
 #'
-#' @examples
-#' QUIC(Sigma2, rho = sigma2penalty*lam2[j], msg = 0)
 QUIC <- function(S, rho, path = NULL, tol = 1.0e-4, msg = 1, maxIter = 1000,
                  X.init = NULL, W.init = NULL) {
   ### $Id: QUIC.R,v 1.7 2012-05-01 02:12:19 sustik Exp $
