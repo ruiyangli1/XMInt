@@ -4,7 +4,7 @@ Title: Package Usage
 Version: 1.0.0
 Author: Ruiyang Li, Xi Zhu, Seonjoo Lee
 Maintainer: Ruiyang Li <rl3034@cumc.columbia.edu>
-Description: This package contains functions for model selection for multivariate mediation with interaction.
+Description: This package contains functions for model selection for exposure-mediator interaction.
 Depends:
     glmnet,
     ggplot2,
