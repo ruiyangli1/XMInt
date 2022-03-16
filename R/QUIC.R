@@ -1,10 +1,10 @@
 ## QUIC function (from https://cran.r-project.org/src/contrib/Archive/QUIC/QUIC_1.1.1.tar.gz)
 
-#' @title QUIC function replicated from https://cran.r-project.org/src/contrib/Archive/QUIC/QUIC_1.1.1.tar.gz)
+#' @title QUIC function replicated from https://cran.r-project.org/src/contrib/Archive/QUIC/QUIC_1.1.1.tar.gz
 #'
 #' @description QUadratic Inverse Covariance estimation
 #' @description Estimates a sparse inverse covariance matrix using a combination of Newton's method and coordinate descent.
-#' @description For details, please refer to https://cran.r-project.org/src/contrib/Archive/QUIC/QUIC_1.1.1.tar.gz)
+#' @description For details, please refer to https://cran.r-project.org/src/contrib/Archive/QUIC/QUIC_1.1.1.tar.gz
 #'
 #' @param S Covariance matrix. A p by p symmetric matrix.
 #' @param rho Regularization parameter. It can be a p by p matrix, a vector or scalar.
