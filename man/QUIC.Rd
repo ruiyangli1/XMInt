@@ -2,7 +2,7 @@
 % Please edit documentation in R/QUIC.R
 \name{QUIC}
 \alias{QUIC}
-\title{QUIC function replicated from https://cran.r-project.org/src/contrib/Archive/QUIC/QUIC_1.1.1.tar.gz)}
+\title{QUIC function replicated from https://cran.r-project.org/src/contrib/Archive/QUIC/QUIC_1.1.1.tar.gz}
 \usage{
 QUIC(
   S,
@@ -40,7 +40,7 @@ QUadratic Inverse Covariance estimation
 
 Estimates a sparse inverse covariance matrix using a combination of Newton's method and coordinate descent.
 
-For details, please refer to https://cran.r-project.org/src/contrib/Archive/QUIC/QUIC_1.1.1.tar.gz)
+For details, please refer to https://cran.r-project.org/src/contrib/Archive/QUIC/QUIC_1.1.1.tar.gz
 }
 \references{
 Sparse Inverse Covariance Matrix Estimation Using Quadratic Approximation. Cho-Jui Hsieh, Matyas A. Sustik, Inderjit S. Dhillon, Pradeep Ravikumar, Advances in Neural Information Processing Systems, vol. 24, 2011, p. 2330–2338.
