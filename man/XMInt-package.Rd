@@ -4,7 +4,7 @@
 \name{XMInt-package}
 \alias{XMInt}
 \alias{XMInt-package}
-\title{XMInt: Package Usage}
+\title{XMInt: Model Selection for Exposure-Mediator Interaction}
 \description{
 This package contains functions for model selection for exposure-mediator interaction.
 }
