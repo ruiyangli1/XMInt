@@ -23,9 +23,9 @@ This function generates the simulation data (exposure X, outcome Y, and potentia
 
 For each subject i = 1, ..., N:
 \itemize{
-\item \eqn{X_i ~ i.i.d N(0, 1)}
-\item \eqn{M_{i,v} = a_v X_i + e{1_{i,v}}}, where \eqn{e{1_{i,v}} ~ i.i.d N(0, 1), v = 1, ..., V}
-\item \eqn{Y_i = X_i + sum_v b{1_{i,v}} M_{i,v} + sum_v b{2_{i,v}} X_i x M_{i,v} + e{2_{i,v}}}, where \eqn{e{2_{i,v}} ~ i.i.d. N(0, 1)}
+\item \eqn{X_i \sim i.i.d N(0, 1)}
+\item \eqn{M_{i,v} = a_v X_i + e{1_{i,v}}}, where \eqn{e{1_{i,v}} \sim i.i.d N(0, 1), v = 1, ..., V}
+\item \eqn{Y_i = X_i + \sum_v b{1_{v}} M_{i,v} + \sum_v b{2_{v}} X_i x M_{i,v} + e{2_{i}}}, where \eqn{e{2_{i}} \sim i.i.d. N(0, 1)}
 }
 
 The first three M variables (M1,M2,M3) are set to be the true mediators (i.e., having non-zero a and b_1 coefficients), X x M1 is set to be the true exposure-by-mediator interaction term (i.e., having non-zero b_2 coefficients), and all other coefficients are set to be 0.
