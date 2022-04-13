@@ -3,10 +3,10 @@
 For each subject i = 1, ..., N:
 \(X_i \stackrel{i.i.d}{\sim} N(0, 1)\)
 \(M_{i,v} = a_v X_i + e_{1_{i,v}}\), where \(e_{1_{i,v}} \stackrel{i.i.d}{\sim} N(0, 1), v = 1, ..., V\)
-\(Y_i = X_i + \sum_v b_{1_{v}} M_{i,v} + \sum_v b_{2_{v}} X_i \times M_{i,v} + e_{2_{i}}\), where \(e{2_{i}} \stackrel{i.i.d}{\sim} N(0, 1)\)
+\(Y_i = X_i + \sum_v b_{1_{v}} M_{i,v} + \sum_v b_{2_{v}} X_i \times M_{i,v} + e_{2_{i}}\), where \(e_{2_{i}} \stackrel{i.i.d}{\sim} N(0, 1)\)
 
 
-The first three M variables (M1,M2,M3) are set to be the true mediators (i.e., having non-zero a and b_1 coefficients), X x M1 is set to be the true exposure-by-mediator interaction term (i.e., having non-zero b_2 coefficients), and all other coefficients are set to be 0."><!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
+The first three M variables ($M_1,M_2,M_3$) are set to be the true mediators (i.e., having non-zero $a$ and $b_1$ coefficients), $X  M_1$ is set to be the true exposure-by-mediator interaction term (i.e., having non-zero $b_2$ coefficients), and all other coefficients are set to be 0."><!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]--></head><body data-spy="scroll" data-target="#toc">
@@ -66,8 +66,8 @@ The first three M variables (M1,M2,M3) are set to be the true mediators (i.e., h
     <p>This function generates the simulation data (exposure X, outcome Y, and potential mediators M).</p>
 <p>For each subject i = 1, ..., N:</p><ul><li><p>\(X_i \stackrel{i.i.d}{\sim} N(0, 1)\)</p></li>
 <li><p>\(M_{i,v} = a_v X_i + e_{1_{i,v}}\), where \(e_{1_{i,v}} \stackrel{i.i.d}{\sim} N(0, 1), v = 1, ..., V\)</p></li>
-<li><p>\(Y_i = X_i + \sum_v b_{1_{v}} M_{i,v} + \sum_v b_{2_{v}} X_i \times M_{i,v} + e_{2_{i}}\), where \(e{2_{i}} \stackrel{i.i.d}{\sim} N(0, 1)\)</p></li>
-</ul><p>The first three M variables (M1,M2,M3) are set to be the true mediators (i.e., having non-zero a and b_1 coefficients), X x M1 is set to be the true exposure-by-mediator interaction term (i.e., having non-zero b_2 coefficients), and all other coefficients are set to be 0.</p>
+<li><p>\(Y_i = X_i + \sum_v b_{1_{v}} M_{i,v} + \sum_v b_{2_{v}} X_i \times M_{i,v} + e_{2_{i}}\), where \(e_{2_{i}} \stackrel{i.i.d}{\sim} N(0, 1)\)</p></li>
+</ul><p>The first three M variables ($M_1,M_2,M_3$) are set to be the true mediators (i.e., having non-zero $a$ and $b_1$ coefficients), $X  M_1$ is set to be the true exposure-by-mediator interaction term (i.e., having non-zero $b_2$ coefficients), and all other coefficients are set to be 0.</p>
     </div>
 
     <div id="ref-usage">
