@@ -6,7 +6,7 @@
 #' - \eqn{X_i \stackrel{i.i.d}{\sim} N(0, 1)}
 #' - \eqn{M_{i,v} = a_v X_i + e_{1_{i,v}}}, where \eqn{e_{1_{i,v}} \stackrel{i.i.d}{\sim} N(0, 1), v = 1, ..., V}
 #' - \eqn{Y_i = X_i + \sum_v b_{1_{v}} M_{i,v} + \sum_v b_{2_{v}} X_i \times M_{i,v} + e_{2_{i}}}, where \eqn{e_{2_{i}} \stackrel{i.i.d}{\sim} N(0, 1)}
-#' @description The first three M variables ($M_1,M_2,M_3$) are set to be the true mediators (i.e., having non-zero $a$ and $b_1$ coefficients), $X \times M_1$ is set to be the true exposure-by-mediator interaction term (i.e., having non-zero $b_2$ coefficients), and all other coefficients are set to be 0.
+#' @description The first three M variables (M1,M2,M3) are set to be the true mediators (i.e., having non-zero a and b_1 coefficients), X x M1 is set to be the true exposure-by-mediator interaction term (i.e., having non-zero b_2 coefficients), and all other coefficients are set to be 0.
 #'
 #' @param N sample size
 #' @param V number of potential mediators
