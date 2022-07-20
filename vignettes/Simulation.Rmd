@@ -302,5 +302,117 @@ if (is.null(sim.error)) {re_N400 = re} else {
 
 
 stopImplicitCluster()
+
+
+
+
+
+
+# --- plot results --- 
+
+library(tidyverse)
+
+re_list = ls(pattern = "re_", all.names = TRUE)
+plt_dat = do.call(rbind,lapply(re_list, get)) %>% 
+  mutate(tpr_med = tpr_med * 100,
+         fdr_med = fdr_med * 100, 
+         tpr_int = tpr_int * 100, 
+         fdr_int = fdr_int * 100)
+
+## mean
+pr_mean_dat = 
+  plt_dat %>% 
+  group_by(N,V,ES) %>% 
+  summarise(mean_tpr_med = mean(tpr_med),
+            mean_tpr_int = mean(tpr_int),
+            mean_fdr_med = mean(fdr_med),
+            mean_fdr_int = mean(fdr_int));pr_mean_dat %>% data.frame()
+
+## tpr, med
+sim.tpr.plt.med.mean = 
+  pr_mean_dat %>% 
+  mutate(
+    N = as.character(N),
+    V = factor(V, levels = c(50,100,200,400),labels = c("V = 50","V = 100","V = 200","V = 400")),
+    ES = as.character(ES)
+  ) %>% 
+  ggplot(aes(y = mean_tpr_med,x = N, color = ES, group = ES, shape = ES)) + 
+  geom_point(size = 2) +
+  geom_line() + 
+  facet_grid(V~., scales = "free") + 
+  #ylim(0, 100) + 
+  scale_y_continuous(limits = c(0, 100), breaks = seq(0, 100, by = 20)) +
+  geom_hline(yintercept = 80, linetype = "dashed") +
+  labs(y = "Avg. True Positive Rate (%)", x = "Sample Size (N)",
+       title = "Avg. True Positive Rate: Mediators") +
+  theme_bw(); sim.tpr.plt.med.mean
+
+## tpr, int
+sim.tpr.plt.int.mean = 
+  pr_mean_dat %>% 
+  mutate(
+    N = as.character(N),
+    V = factor(V, levels = c(50,100,200,400),labels = c("V = 50","V = 100","V = 200","V = 400")),
+    ES = as.character(ES)
+  ) %>% 
+  ggplot(aes(y = mean_tpr_int,x = N, color = ES, group = ES, shape = ES)) + 
+  geom_point(size = 2) +
+  geom_line() + 
+  facet_grid(V~., scales = "free") + 
+  #ylim(0, 100) + 
+  scale_y_continuous(limits = c(0, 100), breaks = seq(0, 100, by = 20)) + 
+  geom_hline(yintercept = 80, linetype = "dashed") + 
+  labs(y = "Avg. True Positive Rate (%)", x = "Sample Size (N)",
+       title = "Avg. True Positive Rate: Interaction") +
+  theme_bw(); sim.tpr.plt.int.mean
+
+
+## fdr, med
+sim.fdr.plt.med.mean = 
+  pr_mean_dat %>% 
+  mutate(
+    N = as.character(N),
+    V = factor(V, levels = c(50,100,200,400),labels = c("V = 50","V = 100","V = 200","V = 400")),
+    ES = as.character(ES)
+  ) %>% 
+  ggplot(aes(y = mean_fdr_med,x = N, color = ES, group = ES, shape = ES)) + 
+  geom_point(size = 2) +
+  geom_line() + 
+  #ylim(0, 100) + 
+  scale_y_continuous(limits = c(0, 100), breaks = seq(0, 100, by = 20)) + 
+  geom_hline(yintercept = 10, linetype = "dashed") +
+  facet_grid(V~., scales = "free") + 
+  labs(y = "Avg. False Discovery Rate (%)", x = "Sample Size (N)",
+       title = "Avg. False Discovery Rate: Mediators") +
+  theme_bw(); sim.fdr.plt.med.mean
+
+
+## fdr, int
+sim.fdr.plt.int.mean = 
+  pr_mean_dat %>% 
+  mutate(
+    N = as.character(N),
+    V = factor(V, levels = c(50,100,200,400),labels = c("V = 50","V = 100","V = 200","V = 400")),
+    ES = as.character(ES)
+  ) %>% 
+  ggplot(aes(y = mean_fdr_int,x = N, color = ES, group = ES, shape = ES)) + 
+  geom_point(size = 2) +
+  geom_line() + 
+  #ylim(0, 100) + 
+  scale_y_continuous(limits = c(0, 100), breaks = seq(0, 100, by = 20)) + 
+  geom_hline(yintercept = 10, linetype = "dashed") +
+  facet_grid(V~., scales = "free") + 
+  labs(y = "Avg. False Discovery Rate (%)", x = "Sample Size (N)",
+       title = "Avg. False Discovery Rate: Interaction") +
+  theme_bw(); sim.fdr.plt.int.mean
+
+
+# combine plots
+library(pdp)
+#pdf("fig2.pdf", height = 8, width = 10) # save as pdf
+grid.arrange(sim.tpr.plt.med.mean, sim.fdr.plt.med.mean, 
+             sim.tpr.plt.int.mean, sim.fdr.plt.int.mean, 
+             nrow = 2)
+#dev.off()
 ```
 
