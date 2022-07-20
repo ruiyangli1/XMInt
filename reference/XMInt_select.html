@@ -34,6 +34,9 @@
   <ul class="dropdown-menu" role="menu"><li>
       <a href="../articles/Example.html">Example for XMInt</a>
     </li>
+    <li>
+      <a href="../articles/Simulation.html">Simulation for XMInt</a>
+    </li>
   </ul></li>
       </ul><ul class="nav navbar-nav navbar-right"><li>
   <a href="https://github.com/ruiyangli1/XMInt/" class="external-link">
@@ -60,52 +63,79 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">XMInt_select</span><span class="op">(</span>
-  <span class="va">X</span>,
-  <span class="va">Y</span>,
-  <span class="va">M</span>,
-  K <span class="op">=</span> <span class="fl">20</span>,
-  zeta <span class="op">=</span> <span class="fl">0.05</span>,
-  max.factor <span class="op">=</span> <span class="fl">1.5</span>,
-  hbic_plot <span class="op">=</span> <span class="cn">FALSE</span>,
-  coef_print <span class="op">=</span> <span class="cn">FALSE</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">XMInt_select</span><span class="op">(</span></span>
+<span>  <span class="va">X</span>,</span>
+<span>  <span class="va">Y</span>,</span>
+<span>  <span class="va">M</span>,</span>
+<span>  K <span class="op">=</span> <span class="fl">20</span>,</span>
+<span>  zeta <span class="op">=</span> <span class="fl">0.05</span>,</span>
+<span>  max.factor <span class="op">=</span> <span class="fl">1.5</span>,</span>
+<span>  hbic_plot <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  coef_print <span class="op">=</span> <span class="cn">FALSE</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>X</dt>
 <dd><p>exposure</p></dd>
+
+
 <dt>Y</dt>
 <dd><p>outcome</p></dd>
+
+
 <dt>M</dt>
 <dd><p>mediators</p></dd>
+
+
 <dt>K</dt>
 <dd><p>lambda sequence length (default = 20)</p></dd>
+
+
 <dt>zeta</dt>
 <dd><p>min/max lambda ratio (default = 0.05)</p></dd>
+
+
 <dt>max.factor</dt>
 <dd><p>enlarging factor (default = 1.5)</p></dd>
+
+
 <dt>hbic_plot</dt>
 <dd><p>plot HBIC curve (default = <code>FALSE</code>)</p></dd>
+
+
 <dt>coef_print</dt>
 <dd><p>print coefficients (default = <code>FALSE</code>)</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p><em>selected_mediator</em>: selected mediator
-<em>selected_interaction</em>: selected interaction
-hbic_plot: HBIC plot for final model selection
-hbic: computed HBIC
-lambda: lambda sequence used
-coefficient: estimated coefficients</p>
+    
+
+<p><em>selected_mediator</em>: selected mediator</p>
+
+
+<p><em>selected_interaction</em>: selected interaction</p>
+
+
+<p>hbic_plot: HBIC plot for final model selection</p>
+
+
+<p>hbic: computed HBIC</p>
+
+
+<p>lambda: lambda sequence used</p>
+
+
+<p>coefficient: estimated coefficients</p>
     </div>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="va">data</span> <span class="op">=</span> <span class="fu"><a href="dat_gen.html">dat_gen</a></span><span class="op">(</span><span class="fl">200</span>,<span class="fl">100</span>,es <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">X</span> <span class="op">=</span> <span class="va">data</span><span class="op">$</span><span class="va">X</span>; <span class="va">Y</span> <span class="op">=</span> <span class="va">data</span><span class="op">$</span><span class="va">Y</span>; <span class="va">M</span> <span class="op">=</span> <span class="va">data</span><span class="op">$</span><span class="va">M</span>; <span class="va">I</span> <span class="op">=</span> <span class="va">X</span><span class="op">*</span><span class="va">M</span></span>
-<span class="r-in"><span class="fu">XMInt_select</span><span class="op">(</span><span class="va">X</span>,<span class="va">Y</span>,<span class="va">M</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">data</span> <span class="op">=</span> <span class="fu"><a href="dat_gen.html">dat_gen</a></span><span class="op">(</span><span class="fl">200</span>,<span class="fl">100</span>,es <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">X</span> <span class="op">=</span> <span class="va">data</span><span class="op">$</span><span class="va">X</span>; <span class="va">Y</span> <span class="op">=</span> <span class="va">data</span><span class="op">$</span><span class="va">Y</span>; <span class="va">M</span> <span class="op">=</span> <span class="va">data</span><span class="op">$</span><span class="va">M</span>; <span class="va">I</span> <span class="op">=</span> <span class="va">X</span><span class="op">*</span><span class="va">M</span></span></span>
+<span class="r-in"><span><span class="fu">XMInt_select</span><span class="op">(</span><span class="va">X</span>,<span class="va">Y</span>,<span class="va">M</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Maximum lambda has been identified. </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Lambda 1 was finished.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Lambda 2 was finished.</span>
@@ -165,7 +195,7 @@ coefficient: estimated coefficients</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

@@ -41,6 +41,9 @@ The first three M variables (M1,M2,M3) are set to be the true mediators (i.e., h
   <ul class="dropdown-menu" role="menu"><li>
       <a href="../articles/Example.html">Example for XMInt</a>
     </li>
+    <li>
+      <a href="../articles/Simulation.html">Simulation for XMInt</a>
+    </li>
   </ul></li>
       </ul><ul class="nav navbar-nav navbar-right"><li>
   <a href="https://github.com/ruiyangli1/XMInt/" class="external-link">
@@ -71,28 +74,37 @@ The first three M variables (M1,M2,M3) are set to be the true mediators (i.e., h
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">dat_gen</span><span class="op">(</span><span class="va">N</span>, <span class="va">V</span>, <span class="va">es</span>, seed <span class="op">=</span> <span class="fl">1234</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">dat_gen</span><span class="op">(</span><span class="va">N</span>, <span class="va">V</span>, <span class="va">es</span>, seed <span class="op">=</span> <span class="fl">1234</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>N</dt>
 <dd><p>sample size</p></dd>
+
+
 <dt>V</dt>
 <dd><p>number of potential mediators</p></dd>
+
+
 <dt>es</dt>
 <dd><p>effect size, representing the value of a, b1, b2 of the truth</p></dd>
+
+
 <dt>seed</dt>
 <dd><p>seed. Default is 1234.</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>The resulting dataset has 3 lists: X, Y and M</p>
+    
+
+<p>The resulting dataset has 3 lists: X, Y and M</p>
     </div>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="fu">dat_gen</span><span class="op">(</span><span class="fl">100</span>, <span class="fl">50</span>, <span class="fl">1</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">dat_gen</span><span class="op">(</span><span class="fl">100</span>, <span class="fl">50</span>, <span class="fl">1</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $X</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   [1] -1.045697393  0.432286631  1.235759026 -2.179335328  0.583316744</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   [6]  0.659910529 -0.416144973 -0.388160150 -0.405902135 -0.730059951</span>
@@ -1180,7 +1192,7 @@ The first three M variables (M1,M2,M3) are set to be the true mediators (i.e., h
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

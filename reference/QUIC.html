@@ -36,6 +36,9 @@ For details, please refer to https://cran.r-project.org/src/contrib/Archive/QUIC
   <ul class="dropdown-menu" role="menu"><li>
       <a href="../articles/Example.html">Example for XMInt</a>
     </li>
+    <li>
+      <a href="../articles/Simulation.html">Simulation for XMInt</a>
+    </li>
   </ul></li>
       </ul><ul class="nav navbar-nav navbar-right"><li>
   <a href="https://github.com/ruiyangli1/XMInt/" class="external-link">
@@ -64,40 +67,57 @@ For details, please refer to https://cran.r-project.org/src/contrib/Archive/QUIC
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">QUIC</span><span class="op">(</span>
-  <span class="va">S</span>,
-  <span class="va">rho</span>,
-  path <span class="op">=</span> <span class="cn">NULL</span>,
-  tol <span class="op">=</span> <span class="fl">1e-04</span>,
-  msg <span class="op">=</span> <span class="fl">1</span>,
-  maxIter <span class="op">=</span> <span class="fl">1000</span>,
-  X.init <span class="op">=</span> <span class="cn">NULL</span>,
-  W.init <span class="op">=</span> <span class="cn">NULL</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">QUIC</span><span class="op">(</span></span>
+<span>  <span class="va">S</span>,</span>
+<span>  <span class="va">rho</span>,</span>
+<span>  path <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  tol <span class="op">=</span> <span class="fl">1e-04</span>,</span>
+<span>  msg <span class="op">=</span> <span class="fl">1</span>,</span>
+<span>  maxIter <span class="op">=</span> <span class="fl">1000</span>,</span>
+<span>  X.init <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  W.init <span class="op">=</span> <span class="cn">NULL</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>S</dt>
 <dd><p>Covariance matrix. A p by p symmetric matrix.</p></dd>
+
+
 <dt>rho</dt>
 <dd><p>Regularization parameter. It can be a p by p matrix, a vector or scalar.</p></dd>
+
+
 <dt>path</dt>
 <dd><p>If specified, then rho is scaled with the elements of path and the corresponding inverse covariance matrix estimation is carried out for each value.</p></dd>
+
+
 <dt>tol</dt>
 <dd><p>Specifes the convergence tolerance.</p></dd>
+
+
 <dt>msg</dt>
 <dd><p>Controls how verbose messages should be printed during execution. Valid value range: 0–4.</p></dd>
+
+
 <dt>maxIter</dt>
 <dd><p>Specifies the maximum number of Newton iterations.</p></dd>
+
+
 <dt>X.init</dt>
 <dd><p>The initial estimate for the regularized inverse covariance matrix.</p></dd>
+
+
 <dt>W.init</dt>
 <dd><p>The inverse of initial estimate for the regularized inverse covariance matrix.</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
     
+
+
     </div>
     <div id="references">
     <h2>References</h2>
@@ -121,7 +141,7 @@ For details, please refer to https://cran.r-project.org/src/contrib/Archive/QUIC
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>
