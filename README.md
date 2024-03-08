@@ -40,3 +40,5 @@ result$selected_mediator
 ## selected interaction(s)
 result$selected_interaction 
 ```
+
+More details [here](https://ruiyangli1.github.io/XMInt/articles/Example.html).
