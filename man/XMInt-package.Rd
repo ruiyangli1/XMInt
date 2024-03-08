@@ -13,6 +13,7 @@ Useful links:
 \itemize{
   \item \url{https://github.com/ruiyangli1/XMInt}
   \item \url{https://ruiyangli1.github.io/XMInt}
+  \item \url{https://ruiyangli1.github.io/XMInt/}
 }
 
 }
