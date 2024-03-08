@@ -26,7 +26,7 @@ XMInt_select(
 
 \item{zeta}{min/max lambda ratio (default = 0.05)}
 
-\item{max.factor}{enlarging factor (default = 1.5)}
+\item{max.factor}{enlarging factor (default = 1.5) to start with base model}
 
 \item{hbic_plot}{plot HBIC curve (default = \code{FALSE})}
 
@@ -49,7 +49,7 @@ coefficient: estimated coefficients
 This function gives the model selection results.
 }
 \examples{
-data = dat_gen(200,100,es = 1)
-X = data$X; Y = data$Y; M = data$M; I = X*M
+data = dat_gen(N = 400, V = 50, es = 1, seed = 1234)
+X = data$X; Y = data$Y; M = data$M
 XMInt_select(X,Y,M)
 }

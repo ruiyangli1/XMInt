@@ -8,7 +8,7 @@
 #' @param M mediators
 #' @param K lambda sequence length (default = 20)
 #' @param zeta min/max lambda ratio (default = 0.05)
-#' @param max.factor enlarging factor (default = 1.5)
+#' @param max.factor enlarging factor (default = 1.5) to start with base model
 #' @param hbic_plot plot HBIC curve (default = \code{FALSE})
 #' @param coef_print print coefficients (default = \code{FALSE})
 #'
@@ -21,57 +21,47 @@
 #' @export
 #'
 #' @examples
-#' data = dat_gen(200,100,es = 1)
-#' X = data$X; Y = data$Y; M = data$M; I = X*M
+#' data = dat_gen(N = 400, V = 50, es = 1, seed = 1234)
+#' X = data$X; Y = data$Y; M = data$M
 #' XMInt_select(X,Y,M)
 XMInt_select <- function(X,Y,M,
-                         K = 20, # tuning parameter length
-                         zeta = 0.05, # min/max lambda ratio
-                         max.factor = 1.5, # enlarge max lambda by this factor in the case where the initial max lambda is too small to start with the null model
+                         K = 20,
+                         zeta = 0.05,
+                         max.factor = 1.5,
                          hbic_plot = FALSE, coef_print = FALSE){
-
-  #library(tidyverse)
-  #library(smm)
-  #library(glmnet)
 
   hbic_calc <- function(fit, fit.n){
 
     # calculate last term (sum)
     sum1 = 0
     sum2 = 0
-
     for (j in 1:N) {
-
-      s1 =
-        as.numeric(
-          t(M[j,] - fit$hata[j] * X[j]) %*%
-            data.matrix(data.frame(fit$Omega[[1]][[1]])) %*%
-            (M[j,] - fit$hata[j] * X[j]))
+      s1 = as.numeric( t(M[j,] - fit$hata * X[j]) %*% data.matrix(data.frame(fit$Omega)) %*% (M[j,] - fit$hata * X[j]))
       sum1 = sum1 + s1
-
-      s2 =
-        as.numeric(
-          t(M[j,] - fit.n$hata * X[j]) %*%
-            data.matrix(data.frame(fit.n$Omega)) %*%
-            (M[j,] - fit.n$hata * X[j]) )
+      s2 = as.numeric(t(M[j,] - fit.n$hata * X[j]) %*% data.matrix(data.frame(fit.n$Omega)) %*% (M[j,] - fit.n$hata * X[j]) )
       sum2 = sum2 + s2
-
     }
 
     # calculate difference in 2*log-likelihood (l(fit.n) - l(fit))
-    lik.diff =
-      - N*log(fit.n$sigmasq) + N*log(fit$sigmasq)
-    + N*log(det(data.matrix(data.frame(fit.n$Omega)))) -
-      N*log(det(data.matrix(data.frame(fit$Omega[[1]]))))
-    - 1/fit.n$sigmasq * rowsum(
-      ((Y - X*fit.n$c - M %*% fit.n$hatb1 - (X*M) %*% fit.n$hatb2))^2, rep(1,N))
-    + 1/fit$sigmasq * rowsum(
-      ((Y - X*fit$c - M %*% fit$hatb1 - (X*M) %*% fit$hatb2))^2, rep(1,N))
-    - sum2 + sum1
+    lik.diff = -N*log(fit.n$sigmasq)+N*log(fit$sigmasq) +
+      N*log(det(data.matrix(data.frame(fit.n$Omega))))-
+      N*log(det(data.matrix(data.frame(fit$Omega)))) -
+      1/fit.n$sigmasq * rowsum(((Y - X*fit.n$c - M %*% fit.n$hatb1 - (X*M) %*% fit.n$hatb2))^2, rep(1,N)) +
+      1/fit$sigmasq * rowsum(((Y - X*fit$c - M %*% fit$hatb1 - (X*M) %*% fit$hatb2))^2, rep(1,N)) -
+      sum2 + sum1
 
     # calculate hbic
-    hbic = lik.diff - (fit.n$nump - fit$nump)*log(N/(2*pi))
+    a = fit.n$Omega
+    fit.n.covnpar = sum(a[lower.tri(a)] !=0)
+
+    b = fit$Omega
+    fit.covnpar = sum(b[lower.tri(b)] !=0)
+
+    hbic = lik.diff - ((fit.n$nump+fit.n.covnpar) - (fit$nump+fit.covnpar))*log(N/(2*pi))
     names(hbic) = NULL
+
+    #message("Null model's npar: --- coef: ", fit.n$nump, " // Omega: ", fit.n.covnpar, " // total: ",fit.n$nump+fit.n.covnpar)
+    #message("Fitted model's npar: --- coef: ", fit$nump, " // Omega: ", fit.covnpar, " // total: ",fit$nump+fit.covnpar)
 
     return(hbic)
   }
@@ -102,60 +92,34 @@ XMInt_select <- function(X,Y,M,
 
   lambda_max = 1/N*max(abs(t(X_full) %*% Y))
 
-  ## null model
-  fit.n = try(model_estimate(X, M, Y, I_update, lambda1 = exp(1), lambda2 = 0.1, alpha = 1, non.zeros.stop = 500, Omega.out = TRUE))
-
-  ## interaction model
   fit = try(model_estimate(X,M,Y,I_update, lambda1 = lambda_max,lambda2 = exp(-1),alpha = 1,penalty.factor = penalty,Omega.out = TRUE))
-
-  hbic0 = hbic_calc(fit,fit.n)
-
-  if (abs(hbic0) > 10) {
+  if (fit$nump > 1) {
     cat("Max lambda needs to be enlarged. \n")
   }
-
-  while (abs(hbic0) > 10) {
-
+  while (fit$nump > 1) {
     lambda_max = max.factor*lambda_max
-
-    ## null model
-    fit.n = try(model_estimate(X, M, Y, I_update, lambda1 = exp(1), lambda2 = 0.1, alpha = 1, non.zeros.stop = 500, Omega.out = TRUE))
-
-    ## interaction model
     fit = try(model_estimate(X,M,Y,I_update, lambda1 = lambda_max,lambda2 = exp(-1),alpha = 1,penalty.factor = penalty,Omega.out = TRUE))
-
-    hbic0 = hbic_calc(fit,fit.n)
-
   }
-
   cat("Maximum lambda has been identified. \n")
 
   lambda_min = zeta * lambda_max
   lambda_seq = exp(seq(log(lambda_max), log(lambda_min), length = K))
 
 
-
-
   # Initialization (cont'd)
 
   hbic = NULL
   coef = NULL
+  penalty_hist = NULL
 
-  a.name = NULL
-  b1.name = NULL
-  b2.name = NULL
-  M.id = NULL
-  I.id = NULL
-  M.id.loc = NULL
-  I.id.loc = NULL
 
   # Path-building
   # ~~~ iteration starts: on lambda_seq[i]
 
-  for (i in 1:K) {
+  ## null model
+  fit.n = try(model_estimate(X, M, Y, I_update, lambda1 = exp(1), lambda2 = exp(-1), alpha = 1, Omega.out = TRUE))
 
-    ## null model
-    fit.n = try(model_estimate(X, M, Y, I_update, lambda1 = exp(1), lambda2 = 0.1, alpha = 1, non.zeros.stop = 500, Omega.out = TRUE))
+  for (i in 1:K) {
 
     ## interaction model
     fit = try(model_estimate(X,M,Y,I_update, lambda1 = lambda_seq[i],lambda2 = exp(-1),alpha = 1,penalty.factor = penalty,Omega.out = TRUE))
@@ -178,6 +142,9 @@ XMInt_select <- function(X,Y,M,
     ### corresponding location of M
     M.id.loc.from.I = which(colnames(M) %in% b2.name)
 
+    #message("M: ", paste0(M.id," "))
+    #message("I: ", paste0(b2.name," "))
+
     ## penalty
     penalty = c(1,rep(1,ncol(M)),rep(1,max(0,ncol(I_update))),rep(1,ncol(M)))
     penalty[c(1,
@@ -195,6 +162,9 @@ XMInt_select <- function(X,Y,M,
       b2 = fit$hatb2,
       c = fit$c)
 
+    ## store penalty for re-estimation
+    penalty_hist[[i]] = penalty
+
     # ~~ iteration ends, goes back
     cat(paste("Lambda", i, "was finished.\n"))
 
@@ -205,7 +175,6 @@ XMInt_select <- function(X,Y,M,
   hbic_min = which.min(hbic)
 
   # visualize hbic
-  #plot(hbic, xlab = "lambda")
   if (hbic_plot == FALSE) {
     hbic_plt = "HBIC plot is not printed."
   } else {
@@ -219,27 +188,32 @@ XMInt_select <- function(X,Y,M,
             panel.grid.minor = element_blank())
   }
 
-  # RAW coeff results
-
-  if (coef_print == FALSE) {
-    coefficient = "Coefficients are not printed."
-  } else {
-    coefficient = coef
-  }
-
-
   # SELECTED coeff results
   result_optimal = coef[[paste0("lambda",hbic_min)]]
   rownames(result_optimal) = M_name
 
-  coeff_m = subset(result_optimal, a != 0 & b1 != 0)
-  med_selected = rownames(coeff_m) # selected M
+  # re-estimation
+  fit = try(model_estimate(X,M,Y,I_update, lambda1 = lambda_seq[hbic_min],lambda2 = exp(-1),alpha = 1,penalty.factor = penalty_hist[[hbic_min]],Omega.out = TRUE))
+  result_optimal_re = data.frame(
+    a = fit$hata,
+    b1 = fit$hatb1,
+    b2 = fit$hatb2,
+    c = fit$c)
+  rownames(result_optimal_re) = M_name
+  coeff_m_re = subset(result_optimal_re, a != 0 | b1 != 0 | b2 != 0)
+
+  coeff_m = subset(result_optimal, a != 0 | b1 != 0 | b2 != 0)
   int_selected = rownames(subset(coeff_m, b2 != 0)) # selected interaction
+  med_selected = rownames(subset(coeff_m, (a != 0 & b1 != 0) | b2!=0)) # selected M
+
+  if (coef_print == FALSE) {
+    coefficient = "Coefficients are not printed."
+  } else {
+    coefficient = subset(coeff_m_re, a!=0&b1!=0)
+  }
 
   return(list(selected_mediator = med_selected, selected_interaction = int_selected,
               hbic_plot = hbic_plt, hbic = hbic,
               lambda = lambda_seq,
               coefficient = coefficient))
-
-
 }

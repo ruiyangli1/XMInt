@@ -34,7 +34,7 @@ For example, with N = 200, V = 100 and ES = 1, we can generate the example simul
 library(XMInt)
 
 ## data generation
-data = dat_gen(N = 200, V = 100, es = 1)
+data = dat_gen(N = 400, V = 50, es = 1, seed = 1234)
 X = data$X; Y = data$Y; M = data$M
 ```
 
