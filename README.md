@@ -14,7 +14,7 @@ This package conducts the mediation analysis to identify the mediators and the e
 
 Users may need to install gfortran before installing our package. Detailed installation instructions for gfortran can be found at <https://gcc.gnu.org/wiki/GFortranBinaries>. 
 
-```{r}
+```
 ## install package
 # install.packages("devtools")
 devtools::install_github("ruiyangli1/XMInt")
@@ -26,7 +26,17 @@ library(XMInt)
 
 ## Usage
 
-```{r}
-XMInt_select(X,Y,M)
 ```
-For more example, please see [here](https://ruiyangli1.github.io/XMInt/articles/Example.html).
+## data generation: true mediators are M1,M2,M3, true interaction is X*M1
+data = dat_gen(N = 200, V = 50, es = 1, seed = 1)
+X = data$X; Y = data$Y; M = data$M
+
+## select model
+result = XMInt_select(X,Y,M)
+
+## selected mediator(s)
+result$selected_mediator
+
+## selected interaction(s)
+result$selected_interaction 
+```
