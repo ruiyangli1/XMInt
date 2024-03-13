@@ -123,10 +123,14 @@ model_estimate =
         Asqmat.inv = Matrix::bdiag(sqrt(sigma1) * tUU$sqrtinv, 1/sqrt(as.numeric(tXX)) * Omega.sqrtmat.inv)
         C = Asqmat.inv %*% rbind(tUY/sigma1, Omega$X %*% tMX)
 
-        fit = glmnet(as.matrix(Asqmat), as.matrix(C),
-                     lambda = lambda1,
-                     alpha = alpha,
-                     penalty.factor = penalty.factor)
+        if (sum(penalty.factor)==0) {
+          fit = glmnet(as.matrix(Asqmat), as.matrix(C), lambda = 0)
+        } else {
+          fit = glmnet(as.matrix(Asqmat), as.matrix(C),
+                       lambda = lambda1,
+                       alpha = alpha,
+                       penalty.factor = penalty.factor)
+        }
 
         beta_new = fit$beta
         if (all(beta_new[-1] == 0)) {allzero.count = allzero.count + 1}

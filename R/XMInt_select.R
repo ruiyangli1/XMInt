@@ -188,31 +188,35 @@ XMInt_select <- function(X,Y,M,
             panel.grid.minor = element_blank())
   }
 
-  # SELECTED coeff results
+  # selection result
   result_optimal = coef[[paste0("lambda",hbic_min)]]
-  rownames(result_optimal) = M_name
+  int_selected = rownames(subset(result_optimal, b2 != 0))
+  med_selected = rownames(subset(result_optimal, (a != 0 & b1 != 0) | b2!=0))
 
   # re-estimation
-  fit = try(model_estimate(X,M,Y,I_update, lambda1 = lambda_seq[hbic_min],lambda2 = exp(-1),alpha = 1,penalty.factor = penalty_hist[[hbic_min]],Omega.out = TRUE))
+  M_sel = M[,med_selected]
+  I_sel = X*M_sel
+  if (length(int_selected) == 0) {
+    penalty_sel = c(0,rep(0,ncol(M_sel)),rep(1,ncol(M_sel)),rep(0,ncol(M_sel))) # penalty (c,b1,b2,a)
+  } else { # length(int_selected) > 0
+    penalty_sel = c(0,rep(0,ncol(M_sel)),as.numeric(med_selected != int_selected),rep(0,ncol(M_sel))) # penalty (c,b1,b2,a)
+  }
+  fit = try(model_estimate(X,M_sel,Y,I_sel, lambda1 = exp(1),lambda2 = exp(-1),alpha = 1,penalty.factor = penalty_sel,Omega.out = TRUE))
   result_optimal_re = data.frame(
     a = fit$hata,
     b1 = fit$hatb1,
     b2 = fit$hatb2,
     c = fit$c)
-  rownames(result_optimal_re) = M_name
-  coeff_m_re = subset(result_optimal_re, a != 0 | b1 != 0 | b2 != 0)
-
-  coeff_m = subset(result_optimal, a != 0 | b1 != 0 | b2 != 0)
-  int_selected = rownames(subset(coeff_m, b2 != 0)) # selected interaction
-  med_selected = rownames(subset(coeff_m, (a != 0 & b1 != 0) | b2!=0)) # selected M
+  rownames(result_optimal_re) = M_name[as.numeric(gsub("[^0-9]", "", med_selected))]
 
   if (coef_print == FALSE) {
     coefficient = "Coefficients are not printed."
   } else {
-    coefficient = subset(coeff_m_re, a!=0&b1!=0)
+    coefficient = result_optimal_re
   }
 
-  return(list(selected_mediator = med_selected, selected_interaction = int_selected,
+  return(list(selected_mediator = M_name[as.numeric(gsub("[^0-9]", "", med_selected))],
+              selected_interaction = M_name[as.numeric(gsub("[^0-9]", "", int_selected))],
               hbic_plot = hbic_plt, hbic = hbic,
               lambda = lambda_seq,
               coefficient = coefficient))
