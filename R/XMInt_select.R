@@ -110,7 +110,6 @@ XMInt_select <- function(X,Y,M,
 
   hbic = NULL
   coef = NULL
-  penalty_hist = NULL
 
 
   # Path-building
@@ -162,9 +161,6 @@ XMInt_select <- function(X,Y,M,
       b2 = fit$hatb2,
       c = fit$c)
 
-    ## store penalty for re-estimation
-    penalty_hist[[i]] = penalty
-
     # ~~ iteration ends, goes back
     cat(paste("Lambda", i, "was finished.\n"))
 
@@ -194,20 +190,24 @@ XMInt_select <- function(X,Y,M,
   med_selected = rownames(subset(result_optimal, (a != 0 & b1 != 0) | b2!=0))
 
   # re-estimation
-  M_sel = M[,med_selected]
-  I_sel = X*M_sel
-  if (length(int_selected) == 0) {
-    penalty_sel = c(0,rep(0,ncol(M_sel)),rep(1,ncol(M_sel)),rep(0,ncol(M_sel))) # penalty (c,b1,b2,a)
-  } else { # length(int_selected) > 0
-    penalty_sel = c(0,rep(0,ncol(M_sel)),as.numeric(med_selected != int_selected),rep(0,ncol(M_sel))) # penalty (c,b1,b2,a)
+  if (length(med_selected)==0 & length(int_selected)==0) {
+    result_optimal_re = NULL
+  } else {
+    M_sel = as.matrix(M[,med_selected]); colnames(M_sel) = med_selected
+    I_sel = as.matrix(X*M_sel); colnames(I_sel) = paste0("X*", med_selected)
+    if (length(int_selected) == 0) {
+      penalty_sel = c(0,rep(0,length(med_selected)),rep(1,length(med_selected)),rep(0,length(med_selected))) # penalty (c,b1,b2,a)
+    } else { # length(int_selected) > 0
+      penalty_sel = c(0,rep(0,length(med_selected)),as.numeric(!(med_selected %in% int_selected)),rep(0,length(med_selected))) # penalty (c,b1,b2,a)
+    }
+    fit = try(model_estimate(X,M_sel,Y,I_sel, lambda1 = exp(1),lambda2 = exp(-1),alpha = 1,penalty.factor = penalty_sel,Omega.out = TRUE))
+    result_optimal_re = data.frame(
+      a = fit$hata,
+      b1 = fit$hatb1,
+      b2 = fit$hatb2,
+      c = fit$c)
+    rownames(result_optimal_re) = M_name[as.numeric(gsub("[^0-9]", "", med_selected))]
   }
-  fit = try(model_estimate(X,M_sel,Y,I_sel, lambda1 = exp(1),lambda2 = exp(-1),alpha = 1,penalty.factor = penalty_sel,Omega.out = TRUE))
-  result_optimal_re = data.frame(
-    a = fit$hata,
-    b1 = fit$hatb1,
-    b2 = fit$hatb2,
-    c = fit$c)
-  rownames(result_optimal_re) = M_name[as.numeric(gsub("[^0-9]", "", med_selected))]
 
   if (coef_print == FALSE) {
     coefficient = "Coefficients are not printed."
